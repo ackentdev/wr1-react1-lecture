@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
+import Header from './components/Header'
+import Functional from './components/Functional'
 
 
 class App extends Component {
@@ -8,8 +10,13 @@ class App extends Component {
     this.state = {
       friends: [],
       picture: '', 
-      name: ''
+      name: '',
+      favPokemon: "Garbador",
+      message: "Guten Tag, WR1!"
     }
+    this.updatePicture = this.updatePicture.bind(this);
+    this.updateName = this.updateName.bind(this);
+    this.addFriend = this.addFriend.bind(this);
   }
 
   updatePicture(value){
@@ -44,15 +51,14 @@ class App extends Component {
     })
     return (
       <div className="App">
-          <span>Photo URL</span>
-          <input placeholder="add url here..."
-            onChange={ (e) => this.updatePicture(e.target.value)} 
-            value={this.state.picture}/>
-          <span>Friend name</span>
-          <input placeholder="add name..." 
-            onChange={ (e) => this.updateName(e.target.value)}
-            value={this.state.name}/>
-          <button onClick={() => this.addFriend()}>Add Friend</button>
+          <Header propName="test test hello WR1!" favPokemon={this.state.favPokemon}/>
+          <Functional
+            picture = {this.state.picture}
+            name = {this.state.name}
+            addFriend = {this.addFriend}
+            updateName = {this.updateName} 
+            updatePicture = {this.updatePicture} 
+            myMessage={this.state.message}/>
           {friends}
       </div>
     );
